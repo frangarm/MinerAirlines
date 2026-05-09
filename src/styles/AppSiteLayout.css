@@ -1,0 +1,208 @@
+.appSitePage {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--ma-page-bg);
+  color: var(--ma-ink);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.appSiteTopbar {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(39, 67, 184, 0.08);
+  flex-shrink: 0;
+}
+
+.appSiteTopbar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 4vw, 64px);
+  padding-right: clamp(20px, 4vw, 64px);
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.appSiteBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.appSiteBrand__wordmark {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: var(--ma-blue);
+}
+
+.appSiteBrand__mark {
+  font-size: 1.35rem;
+  color: var(--ma-gold-cta);
+  transform: translateY(2px);
+}
+
+.appSiteNav {
+  display: flex;
+  align-items: center;
+  gap: 6px 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+}
+
+.appSiteNav__link {
+  text-decoration: none;
+  color: var(--ma-blue);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.appSiteNav__link:hover {
+  background: rgba(39, 67, 184, 0.06);
+  color: var(--ma-blue-deep);
+}
+
+.appSiteNav__link.is-active {
+  background: rgba(39, 67, 184, 0.12);
+  color: var(--ma-blue-deep);
+}
+
+.appSiteNav__cta {
+  background: var(--ma-gold);
+  color: var(--ma-ink);
+}
+
+.appSiteNav__cta:hover {
+  background: var(--ma-gold-cta);
+  color: var(--ma-ink);
+}
+
+.appSiteNav__pending {
+  color: var(--ma-blue-deep);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 8px 12px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.appSiteInfoBar {
+  background: #eef2ff;
+  border-bottom: 1px solid rgba(39, 67, 184, 0.08);
+  flex-shrink: 0;
+}
+
+.appSiteInfoBar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 4vw, 64px);
+  padding-right: clamp(20px, 4vw, 64px);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 500;
+  color: #243b85;
+  font-size: 0.95rem;
+}
+
+.appSiteInfoBar__icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ma-blue);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Opaque blue below chrome so --ma-page-bg’s light stripe never shows through (Booking, Flights, etc.). */
+.appSiteOutletFill {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: linear-gradient(180deg, #3152d4 0%, #2743b8 30%, #1b3699 58%, #162d88 100%);
+}
+
+.appSiteOutletFill > main {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
+.app-site-main {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(28px, 4.5vw, 52px) clamp(20px, 4vw, 64px) clamp(24px, 4vw, 48px);
+  box-sizing: border-box;
+}
+
+/* Form/marketing cards: start below chrome with comfortable offset (not vertically centered against nav). */
+.app-site-main.app-site-main--narrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  max-width: 720px;
+  padding: clamp(44px, 7vw, 96px) clamp(20px, 4vw, 64px) clamp(32px, 5vw, 64px);
+}
+
+.app-site-main--fluid {
+  max-width: 1720px;
+}
+
+/* Flush to info bar; explicit combo beats any later padding shorthand reloads. */
+main.app-site-main.app-site-main--flush-top {
+  padding-top: 0;
+}
+
+@media (max-width: 768px) {
+  .appSiteTopbar__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .appSiteNav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+
+.field--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* space between label and input */
+}
+
+
+.field--stacked label {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #444;
+}

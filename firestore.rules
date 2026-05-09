@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Check if user is in the admin collection by authUid/email-doc pattern
+    function isAdmin() {
+      return signedIn() && (
+        exists(/databases/$(database)/documents/admin/$(request.auth.uid))
+        || exists(/databases/$(database)/documents/admin/$(request.auth.token.email))
+      );
+    }
+
+    function isStaff() {
+      return signedIn() && (
+        exists(/databases/$(database)/documents/admin/$(request.auth.uid))
+        || exists(/databases/$(database)/documents/admin/$(request.auth.token.email))
+        || exists(/databases/$(database)/documents/pilot/$(request.auth.uid))
+        || exists(/databases/$(database)/documents/pilot/$(request.auth.token.email))
+        || exists(/databases/$(database)/documents/attendant/$(request.auth.uid))
+        || exists(/databases/$(database)/documents/attendant/$(request.auth.token.email))
+      );
+    }
+
+    // Current signed-in customer's profile doc (doc id == auth uid in your create flow)
+    function hasCustomerProfile() {
+      return signedIn() && exists(/databases/$(database)/documents/customer/$(request.auth.uid));
+    }
+
+    function currentCustomerUserId() {
+      return get(/databases/$(database)/documents/customer/$(request.auth.uid)).data.userId;
+    }
+
+    // ===== PUBLIC READS (no auth required) =====
+    match /flights/{flightDocId} {
+      allow read: if true;
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (signedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['seatingMap', 'updatedAt']));
+    }
+
+    match /planes/{planeDocId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ===== CUSTOMER ACCOUNTS =====
+    match /customer/{docId} {
+      allow create: if signedIn()
+        && request.resource.data.authUid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.type == 'customer';
+
+      allow read: if request.auth.uid == docId
+        || request.auth.uid == resource.data.authUid
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+
+      allow update: if request.auth.uid == docId
+        || request.auth.uid == resource.data.authUid
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+
+      allow delete: if request.auth.uid == docId
+        || request.auth.uid == resource.data.authUid
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+    }
+
+    // ===== STAFF ACCOUNTS =====
+    match /admin/{docId} {
+      allow read: if request.auth.uid == resource.data.authUid
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    match /pilot/{docId} {
+      allow read: if request.auth.uid == resource.data.authUid
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    match /attendant/{docId} {
+      allow read: if request.auth.uid == resource.data.authUid 
+        || request.auth.token.email == resource.data.email
+        || isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // ===== BOOKING DATA =====
+    match /boardingPasses/{docId} {
+      // Public read access so QR scans can open boarding passes without auth.
+      allow read: if true;
+
+      // Create own pass during checkout
+      allow create: if hasCustomerProfile()
+        && (
+          request.resource.data.passengerId == currentCustomerUserId()
+          || request.resource.data.passengerId == request.auth.uid
+        );
+
+      // Customer can cancel own pass; admin can do all
+      allow delete: if isAdmin()
+        || (
+          hasCustomerProfile()
+          && (
+            resource.data.passengerId == currentCustomerUserId()
+            || resource.data.passengerId == request.auth.uid
+          )
+        );
+
+      // Keep updates admin-only unless you need customer edits
+      allow update: if isAdmin();
+    }
+
+   match /flightManifest/{docId} {
+      allow read: if signedIn();
+      allow create, update: if signedIn();
+      allow delete: if isAdmin();
+    }
+
+    // Optional backward-compat if any old code still references this collection
+    match /flightPassengers/{docId} {
+      allow read: if signedIn();
+      allow create, update: if signedIn();
+      allow delete: if isAdmin();
+    }
+
+    // ===== DEFAULT DENY =====
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

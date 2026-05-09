@@ -1,0 +1,366 @@
+.adminDashboardPage {
+  width: 100%;
+}
+
+.adminContainer {
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  text-align: left;
+  background: #ffffff;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: 16px;
+  box-shadow: 0 18px 36px rgba(40, 62, 145, 0.12);
+  border: 1px solid rgba(39, 67, 184, 0.1);
+}
+
+.adminHeader h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ma-blue, #2743b8);
+}
+
+.adminHeader p {
+  margin: 6px 0 22px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.adminTabs {
+  display: flex;
+  gap: 10px;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.adminTab {
+  border: 0;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.adminTab.active {
+  background: white;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.adminPanel {
+  margin-top: 6px;
+}
+
+.adminGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.adminGrid2--basePriceSave {
+  grid-template-columns: 1fr;
+}
+
+.adminBasePriceField__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.flightRow .adminBasePriceField__row input[type="number"] {
+  width: auto;
+  flex: 1 1 200px;
+  min-width: 140px;
+  max-width: 360px;
+}
+
+.adminGrid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.adminPanel .field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.adminPanel .field input,
+.adminPanel .field select {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  padding: 0 12px;
+  font-size: 16px;
+  outline: none;
+  background: white;
+}
+
+.adminPanel .field input:focus,
+.adminPanel .field select:focus {
+  border-color: var(--ma-blue, #2743b8);
+  box-shadow: 0 0 0 4px rgba(39, 67, 184, 0.15);
+}
+
+.adminPanel .hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.adminCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  border-radius: 14px;
+  border: none;
+  background: var(--ma-gold, #ffc940);
+  color: var(--ma-ink, #172554);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  margin-top: 8px;
+  box-shadow: 0 10px 24px rgba(255, 201, 64, 0.35);
+  cursor: pointer;
+}
+
+.adminCta:hover {
+  filter: brightness(0.98);
+}
+
+.dangerCta {
+  background: #dc2626;
+  box-shadow: 0 10px 24px rgba(220, 38, 38, 0.28);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 20px 0;
+}
+
+.empty {
+  color: #64748b;
+}
+
+.flightList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.flightRow {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.flightRowMain {
+  flex: 1;
+}
+
+.rowTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.rowSub {
+  color: #475569;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.crewBox {
+  margin-top: 10px;
+}
+
+/*
+ * All Flights: FlightRow fields are NOT inside .adminPanel, so labels were inline
+ * next to inputs. Match create-flight spacing (block labels + gap above inputs).
+ */
+.flightRow .field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.flightRow .field input,
+.flightRow .field select {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  padding: 0 12px;
+  font-size: 16px;
+  outline: none;
+  background: #ffffff;
+}
+
+.flightRow .field input:focus,
+.flightRow .field select:focus {
+  border-color: var(--ma-blue, #2743b8);
+  box-shadow: 0 0 0 4px rgba(39, 67, 184, 0.15);
+}
+
+.flightRow .field input:disabled {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.flightRow .field .hint,
+.flightRow .field small.hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.compensationGrid {
+  margin-top: 12px;
+  align-items: end;
+}
+
+/* Flight row + admin actions (replaces legacy .button from removed index.html styles) */
+.adminBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  min-height: 44px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.adminBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.15);
+}
+
+.adminBtn--secondary {
+  background: var(--ma-blue-deep, #162d88);
+  color: #ffffff;
+  border-color: var(--ma-blue-deep, #162d88);
+  box-shadow: 0 4px 14px rgba(22, 45, 136, 0.22);
+}
+
+.adminBtn--secondary:hover:not(:disabled) {
+  background: var(--ma-blue, #2743b8);
+  border-color: var(--ma-blue, #2743b8);
+  box-shadow: 0 6px 18px rgba(39, 67, 184, 0.28);
+}
+
+.adminBtn--gold {
+  background: var(--ma-gold, #ffc940);
+  color: var(--ma-ink, #172554);
+  border-color: rgba(255, 185, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(255, 201, 64, 0.35);
+}
+
+.adminBtn--gold:hover:not(:disabled) {
+  filter: brightness(1.03);
+  box-shadow: 0 6px 18px rgba(255, 201, 64, 0.45);
+}
+
+.adminBtn--outline {
+  background: #ffffff;
+  color: var(--ma-blue, #2743b8);
+  border-color: rgba(39, 67, 184, 0.35);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.adminBtn--outline:hover:not(:disabled) {
+  background: rgba(39, 67, 184, 0.06);
+  border-color: rgba(39, 67, 184, 0.5);
+}
+
+.adminBtn--danger {
+  background: linear-gradient(180deg, #fff5f5 0%, #ffe4e6 100%);
+  color: #991b1b;
+  border-color: #fecaca;
+  box-shadow: 0 2px 10px rgba(185, 28, 28, 0.12);
+}
+
+.adminBtn--danger:hover:not(:disabled) {
+  background: linear-gradient(180deg, #fee2e2 0%, #fecaca 100%);
+  border-color: #f87171;
+}
+
+.adminBtn--compact {
+  padding: 8px 14px;
+  min-height: 38px;
+  font-size: 0.86rem;
+}
+
+.adminFlightRowBtnRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.flightRow > .adminBtn {
+  flex-shrink: 0;
+}
+
+.adminBtn--deleteGhost {
+  background: #ffffff;
+  color: #b91c1c;
+  border-color: #fecaca;
+  box-shadow: 0 1px 4px rgba(185, 28, 28, 0.1);
+}
+
+.adminBtn--deleteGhost:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #f87171;
+}
+
+@media (max-width: 768px) {
+  .adminTabs {
+    flex-wrap: wrap;
+  }
+
+  .adminGrid2,
+  .adminGrid3 {
+    grid-template-columns: 1fr;
+  }
+
+  .flightRow {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,215 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+/
+.travel-manager-dashboard {
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.travel-manager-dashboard-header h1 {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #001f3f;
+    margin-bottom: 8px;
+}
+
+.travel-manager-dashboard-header h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.travel-manager-dashboard-header .role-badge {
+    font-size: 0.875em;
+    background: #f0f0f0;
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #001f3f;
+    font-weight: 600;
+}
+
+
+.travel-manager-dashboard-header .button,
+.travel-manager-form .button,
+.tab-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.travel-manager-dashboard-header .button {
+    background-color: #ff8c00;
+    color: white;
+}
+
+.travel-manager-dashboard-header .button.secondary,
+.tab-button {
+    background-color: #001f3f;
+    color: white;
+}
+
+.travel-manager-dashboard-header .button:hover,
+.travel-manager-form .button:hover,
+.tab-button:hover {
+    background-color: #ff8c00;
+    color: white;
+}
+
+.travel-manager-dashboard-header .button.secondary:hover,
+.tab-button.active {
+    background-color: #ff8c00;
+    color: #001f3f;
+}
+
+/* Tabs */
+.travel-manager-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.tab-button {
+    padding: 10px 16px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Content headings */
+.travel-manager-content h3 {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #001f3f;
+    margin-bottom: 6px;
+}
+
+.travel-manager-content .tab-description {
+    font-size: 1em;
+    margin-bottom: 16px;
+    color: #555;
+}
+
+/* Forms */
+.travel-manager-form .field {
+    margin-bottom: 16px;
+}
+
+.travel-manager-form label {
+    display: block;
+    font-size: 0.875em;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: #001f3f;
+}
+
+.travel-manager-form input,
+.travel-manager-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    font-size: 1em;
+    outline: none;
+    color: #001f3f;
+    resize: vertical;
+}
+
+.travel-manager-form input:focus,
+.travel-manager-form textarea:focus {
+    border-color: #ff8c00;
+    box-shadow: 0 0 0 4px rgba(255,140,0,0.2);
+}
+
+/* Tables */
+.flights-table-wrapper {
+    overflow-x: auto;
+}
+
+.flights-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+.flights-table th,
+.flights-table td {
+    padding: 12px 16px;
+    text-align: left;
+    color: #001f3f;
+}
+
+.flights-table th {
+    background: #001f3f;
+    color: #fff;
+    font-weight: 600;
+}
+
+.flights-table tr:nth-child(even) {
+    background: #f1f1f1;
+}
+
+.flights-footer {
+    margin-top: 8px;
+    font-size: 0.875em;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .travel-manager-dashboard {
+        padding: 24px;
+    }
+
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .travel-manager-dashboard-header h1 {
+        font-size: 2em;
+    }
+
+    .travel-manager-dashboard-header h2 {
+        font-size: 1.2em;
+    }
+}
